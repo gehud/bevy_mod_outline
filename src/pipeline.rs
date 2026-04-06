@@ -1,6 +1,7 @@
 use std::borrow::Cow;
 
 use bevy::asset::uuid_handle;
+use bevy::core_pipeline::core_3d::CORE_3D_DEPTH_FORMAT;
 use bevy::ecs::system::lifetimeless::SRes;
 use bevy::ecs::system::SystemParamItem;
 use bevy::mesh::MeshVertexBufferLayoutRef;
@@ -209,7 +210,7 @@ impl SpecializedMeshPipeline for OutlinePipeline {
         }
         let depth_stencil = match key.pass_type() {
             PassType::Stencil | PassType::Volume => Some(DepthStencilState {
-                format: TextureFormat::Depth32Float,
+                format: CORE_3D_DEPTH_FORMAT,
                 depth_write_enabled: true,
                 depth_compare: CompareFunction::Greater,
                 stencil: StencilState::default(),

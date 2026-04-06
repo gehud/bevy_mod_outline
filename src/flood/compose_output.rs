@@ -1,15 +1,11 @@
 use bevy::{
-    core_pipeline::FullscreenShader,
+    core_pipeline::{FullscreenShader, core_3d::CORE_3D_DEPTH_FORMAT},
     platform::collections::HashMap,
     prelude::*,
     render::{
         extract_component::{ComponentUniforms, DynamicUniformIndex},
         render_resource::{
-            binding_types::{sampler, texture_2d, uniform_buffer},
-            BindGroupEntries, BindGroupLayoutDescriptor, BindGroupLayoutEntries,
-            CachedRenderPipelineId, FragmentState, PipelineCache, RenderPassDescriptor,
-            RenderPipeline, RenderPipelineDescriptor, Sampler, SamplerDescriptor, ShaderType,
-            StoreOp,
+            BindGroupEntries, BindGroupLayoutDescriptor, BindGroupLayoutEntries, CachedRenderPipelineId, FragmentState, PipelineCache, RenderPassDescriptor, RenderPipeline, RenderPipelineDescriptor, Sampler, SamplerDescriptor, ShaderType, StoreOp, binding_types::{sampler, texture_2d, uniform_buffer}
         },
         renderer::{RenderContext, RenderDevice},
         texture::CachedTexture,
@@ -108,7 +104,7 @@ impl ComposeOutputPipeline {
                 }),
                 primitive: PrimitiveState::default(),
                 depth_stencil: Some(DepthStencilState {
-                    format: TextureFormat::Depth32Float,
+                    format: CORE_3D_DEPTH_FORMAT,
                     depth_write_enabled: true,
                     depth_compare: CompareFunction::Greater,
                     stencil: StencilState::default(),
